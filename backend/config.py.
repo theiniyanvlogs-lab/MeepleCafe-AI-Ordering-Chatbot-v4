@@ -1,0 +1,116 @@
+"""
+=========================================================
+Meeple Cafe AI Ordering Chatbot
+Configuration
+Version : 4.0.0
+Gemini + FAISS Edition
+Author  : Sugumar R
+=========================================================
+"""
+
+import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# ==========================================================
+# Load Environment Variables
+# ==========================================================
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / ".env")
+
+# ==========================================================
+# API Information
+# ==========================================================
+
+API_TITLE = "Meeple Cafe AI Ordering Chatbot"
+API_VERSION = "4.0.0"
+
+API_DESCRIPTION = """
+AI-powered Restaurant Ordering Chatbot built with
+
+• FastAPI
+• Google Gemini Embeddings
+• FAISS Vector Search
+• SQLite Database
+"""
+
+# ==========================================================
+# Gemini Configuration
+# ==========================================================
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+
+# Gemini Embedding Model
+EMBEDDING_MODEL = "gemini-embedding-001"
+
+# Gemini Chat Model
+CHAT_MODEL = "gemini-2.5-flash"
+
+# ==========================================================
+# Restaurant Information
+# ==========================================================
+
+RESTAURANT_NAME = "Meeple Cafe"
+
+RESTAURANT_PHONE = "+91 9876543210"
+
+RESTAURANT_EMAIL = "info@meeplecafe.com"
+
+OPENING_HOURS = "09:00 AM - 10:00 PM"
+
+CURRENCY = "₹"
+
+# ==========================================================
+# File Paths
+# ==========================================================
+
+DATA_DIR = BASE_DIR / "data"
+
+VECTOR_DB_DIR = BASE_DIR / "vector_db"
+
+MENU_FILE = DATA_DIR / "menu.csv"
+
+FAQ_FILE = DATA_DIR / "faq.csv"
+
+RESTAURANT_FILE = DATA_DIR / "restaurant.csv"
+
+FAISS_INDEX = VECTOR_DB_DIR / "menu.index"
+
+METADATA_FILE = VECTOR_DB_DIR / "metadata.pkl"
+
+DATABASE_FILE = BASE_DIR / "meeple_cafe.db"
+
+# ==========================================================
+# Vector Search
+# ==========================================================
+
+TOP_K_RESULTS = 5
+
+SIMILARITY_THRESHOLD = 0.70
+
+# ==========================================================
+# FastAPI
+# ==========================================================
+
+ALLOWED_ORIGINS = [
+    "*",
+]
+
+# ==========================================================
+# Application
+# ==========================================================
+
+DEBUG = True
+
+LOG_LEVEL = "INFO"
+
+# ==========================================================
+# Validate Configuration
+# ==========================================================
+
+if not GEMINI_API_KEY:
+    raise ValueError(
+        "GEMINI_API_KEY not found. Please add it to your .env file."
+    )
